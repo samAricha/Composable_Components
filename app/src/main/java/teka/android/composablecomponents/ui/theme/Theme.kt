@@ -5,6 +5,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import teka.android.composablecomponents.ui.theme.utils.Elevation
+import teka.android.composablecomponents.ui.theme.utils.LocalElevation
+import teka.android.composablecomponents.ui.theme.utils.LocalSpacing
+import teka.android.composablecomponents.ui.theme.utils.Spacing
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -38,10 +43,17 @@ fun ComposableComponentsTheme(
         LightColorPalette
     }
 
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+    CompositionLocalProvider(
+        LocalSpacing provides Spacing(),
+        LocalElevation provides Elevation()
+    ) {
+        MaterialTheme(
+            colors = colors,
+            typography = Typography,
+            shapes = Shapes,
+            content = content
+        )
+    }
+
+
 }
